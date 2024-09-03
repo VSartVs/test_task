@@ -1,24 +1,27 @@
 <script setup>
-import {ref, onMounted} from 'vue';
+import {ref, onMounted} from 'vue'
 
 const props = defineProps({
     message: String,
     type: String
 });
 
-const isVisible = ref(false);
+const isVisible = ref(false)
 
 const hideMessage = () => {
-    isVisible.value = false;
+    isVisible.value = false
 }
 
 onMounted(() => {
-    isVisible.value = true;
+    isVisible.value = true
+    setTimeout(() => {
+        isVisible.value = false
+    }, 800)
 });
 </script>
 
 <template>
-    <div class="flash-message-container"  v-if="isVisible">
+    <div class="flash-message-container"  v-show="isVisible">
         <div :class="['flash-message', `flash-${type}`]">
             <div>{{ message }}</div>
             <button @click="hideMessage">&times;</button>

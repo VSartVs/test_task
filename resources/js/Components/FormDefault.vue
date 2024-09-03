@@ -28,17 +28,25 @@ const props = defineProps({
             </div>
             <div class="p-8">
                 <div class="flex justify-center mb-6" v-if="hasAuthButtons">
-                    <Link
-                        :class="{ 'bg-blue-500 text-white': formType === 'register', 'bg-gray-200 text-gray-700': formType !== 'register' }"
-                        class="px-4 py-2 rounded-l-md focus:outline-none transition-colors duration-300"
-                        :href="route('register')">
-                        Регистрация
-                    </Link>
-                    <Link
+                    <template v-if="!$page.props.auth.user">
+                        <Link
+                            :class="{ 'bg-blue-500 text-white': formType === 'register', 'bg-gray-200 text-gray-700': formType !== 'register' }"
+                            class="px-4 py-2 rounded-l-md focus:outline-none transition-colors duration-300"
+                            :href="route('register')">
+                            Регистрация
+                        </Link>
+                        <Link
+                            :class="{ 'bg-blue-500 text-white': formType === 'login', 'bg-gray-200 text-gray-700': formType !== 'login' }"
+                            class="px-4 py-2 rounded-r-md focus:outline-none transition-colors duration-300"
+                            :href="route('login')">
+                            Авторизация
+                        </Link>
+                    </template>
+                    <Link v-else
                         :class="{ 'bg-blue-500 text-white': formType === 'login', 'bg-gray-200 text-gray-700': formType !== 'login' }"
-                        class="px-4 py-2 rounded-r-md focus:outline-none transition-colors duration-300"
-                        :href="route('login')">
-                        Авторизация
+                        class="px-4 py-2 rounded focus:outline-none transition-colors duration-300"
+                        :href="route('dashboard')">
+                        Профиль
                     </Link>
                 </div>
                 <slot />

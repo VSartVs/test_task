@@ -19,6 +19,10 @@ const submit = () => {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
+const clearError = (field) => {
+    form.clearErrors(field)
+}
 </script>
 
 <template>
@@ -34,6 +38,7 @@ const submit = () => {
                               placeholder="Имя"
                               v-model="form.name"
                               id="name"
+                              @input="clearError('name')"
                    />
                    <i class="fas fa-user absolute left-3 top-3 text-gray-400"></i>
                    <InputError class="mt-2" :message="form.errors.name"/>
@@ -44,6 +49,7 @@ const submit = () => {
                               placeholder="Email"
                               v-model="form.email"
                               id="email"
+                              @input="clearError('email')"
                    />
                    <i class="fas fa-envelope absolute left-3 top-3 text-gray-400"></i>
                    <InputError class="mt-2" :message="form.errors.email"/>
@@ -54,6 +60,7 @@ const submit = () => {
                               placeholder="Пароль"
                               v-model="form.password"
                               id="password"
+                              @input="clearError('password')"
                    />
                    <i class="fas fa-lock absolute left-3 top-3 text-gray-400"></i>
                    <InputError class="mt-2" :message="form.errors.password"/>
@@ -64,6 +71,7 @@ const submit = () => {
                               placeholder="Подтверждение пароля"
                               v-model="form.password_confirmation"
                               id="confirm_password"
+                              @input="clearError('confirm_password')"
                    />
                    <i class="fas fa-lock absolute left-3 top-3 text-gray-400"></i>
                    <InputError class="mt-2" :message="form.errors.password_confirmation"/>

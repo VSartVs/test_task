@@ -156,5 +156,9 @@ return [
         'phone' => 'телефон',
         'password' => 'пароль',
         'current_password'=>'текущий пароль',
+        'firstName'=>'имя',
+        'lastName'=>'фамилия',
+        'message'=>'текст обращения',
+        'status'=>'статус'
     ]
 ];

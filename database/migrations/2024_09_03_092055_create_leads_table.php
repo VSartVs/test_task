@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone', 20);
             $table->string('email');
             $table->text('message');
-            $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('status_id')->default(1);
             $table->timestamps();
 
             $table->foreign('status_id')->references('id')

@@ -1,5 +1,4 @@
 <script setup>
-import Checkbox from '@/Components/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -28,6 +27,10 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+const clearError = (field) => {
+    form.clearErrors(field)
+}
 </script>
 
 <template>
@@ -42,16 +45,20 @@ const submit = () => {
                     <TextInput type="email"
                                placeholder="Email"
                                v-model="form.email"
-                               id="email"/>
+                               id="email"
+                               @input="clearError('email')"
+                    />
                     <i class="fas fa-envelope absolute left-3 top-3 text-gray-400"></i>
                     <InputError class="mt-2" :message="form.errors.email"/>
                 </div>
-                <InputLabel for="password" value="Email"/>
+                <InputLabel for="password" value="Пароль"/>
                 <div class="relative">
                     <TextInput type="password"
                                placeholder="Пароль"
                                v-model="form.password"
-                               id="password"/>
+                               id="password"
+                               @input="clearError('password')"
+                    />
                     <i class="fas fa-lock absolute left-3 top-3 text-gray-400"></i>
                     <InputError class="mt-2" :message="form.errors.password"/>
                 </div>
